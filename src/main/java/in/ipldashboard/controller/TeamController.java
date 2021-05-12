@@ -2,6 +2,7 @@ package in.ipldashboard.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,9 +25,9 @@ public class TeamController {
 
 	@Autowired
 	MatchRepository matchRepository;
-	
+
 	@GetMapping("/team")
-	public Iterable<Team> getAllTeam(){
+	public Iterable<Team> getAllTeam() {
 		return teamRepository.findAll();
 	}
 
@@ -34,6 +35,7 @@ public class TeamController {
 	public Team getTeam(@PathVariable String teamName) {
 		Team team = this.teamRepository.findByTeamName(teamName);
 		team.setMatches(matchRepository.findLatestMatchesbyTeam(teamName, 4));
+		team.setYearsPlayedByTeam(matchRepository.getAllYearsofTeam(teamName));
 		return team;
 	}
 

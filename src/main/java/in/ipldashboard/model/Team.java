@@ -20,6 +20,9 @@ public class Team {
 
 	@Transient
 	private List<Match> matches;
+	
+	@Transient
+	private List<Integer> yearsPlayedByTeam;
 
 	public Team() {
 		super();
@@ -70,6 +73,14 @@ public class Team {
 
 	public void setMatches(List<Match> matches) {
 		this.matches = matches;
+	}
+
+	public List<Integer> getYearsPlayedByTeam() {
+		return yearsPlayedByTeam;
+	}
+
+	public void setYearsPlayedByTeam(List<Integer> yearsPlayedByTeam) {
+		this.yearsPlayedByTeam = yearsPlayedByTeam;
 	}
 
 	@Override
